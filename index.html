@@ -3,133 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Date Teklifi</title>
+  <title>Enise</title>
   <!-- GOOGLE FONT -->
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body {
-      overflow: hidden;
-      height: 100%; width: 100%;
-    }
+    html, body { overflow: hidden; height: 100%; width: 100%; }
     body {
       display: flex; align-items: center; justify-content: center;
       background: linear-gradient(135deg, #ff9a9e, #fad0c4);
       font-family: 'Dancing Script', cursive;
-      color: #333;
-      position: relative;
+      color: #333; position: relative;
     }
-    @keyframes shake {
-      0%,100% { transform: translateX(0); }
-      20%,60% { transform: translateX(-8px); }
-      40%,80% { transform: translateX(8px); }
-    }
-    .error {
-      position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
-      font-size: 1.4rem; background: #fff;
-      color: #ff6f61;
+    @keyframes shake { 0%,100% { transform: translateX(0); } 20%,60% { transform: translateX(-8px); } 40%,80% { transform: translateX(8px); } }
+    .error { position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+      font-size: 1.4rem; background: #fff; color: #ff6f61;
       padding: 0.5rem 1rem; border-radius: 1rem;
-      animation: shake 0.8s ease-in-out;
-      z-index: 10;
-    }
-    .container {
-      text-align: center;
-      background: rgba(255,255,255,0.8);
-      padding: 2.5rem;
-      border-radius: 2rem;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-      width: 90%; max-width: 400px;
-      position: relative;
-    }
+      animation: shake 0.8s ease-in-out; z-index: 10; }
+    .container { text-align: center; background: rgba(255,255,255,0.8);
+      padding: 2.5rem; border-radius: 2rem; box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      width: 90%; max-width: 400px; position: relative; }
     .hidden { display: none; }
-    button {
-      margin-top: 1.5rem;
-      padding: 0.8rem 2rem;
-      font-size: 1.1rem;
-      border: 2px solid #ff6f61;
-      border-radius: 2rem;
-      cursor: pointer;
-      background: #fff;
-      color: #ff6f61;
-      transition: transform 0.2s, background 0.2s;
-    }
-    button:hover {
-      transform: scale(1.1);
-      background: #ff6f61;
-      color: #fff;
-    }
-    .buttons {
-      display: flex; justify-content: space-around;
-      position: relative;
-      margin-top: 1.5rem;
-    }
-    #no-btn {
-      position: relative;
-    }
-    @keyframes pop {
-      0% { opacity: 0; transform: scale(0.5); }
-      50% { opacity: 1; transform: scale(1.2); }
-      100% { opacity: 0; transform: scale(1.5); }
-    }
-    .popup {
-      position: absolute;
-      background: #ff6f61;
-      color: #fff;
-      padding: 0.75rem 1.25rem;
-      border-radius: 1rem;
-      pointer-events: none;
-      animation: pop 1s ease-out forwards;
-      transform: translate(-50%, -50%);
-      font-size: 1rem;
-      font-family: Arial, sans-serif;
-    }
-    .heart {
-      position: fixed; bottom: 20px; right: 20px;
-      font-size: 2.5rem;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      animation: pulse 1.5s infinite;
-    }
-    @keyframes pulse {
-      0%,100% { transform: scale(1); }
-      50% { transform: scale(1.3); }
-    }
-    #easter-egg {
-      position: absolute; bottom: 80px; right: 20px;
-      background: rgba(255,255,255,0.9);
-      color: #333;
-      padding: 1rem;
-      border-radius: 1rem;
-      text-align: center;
-    }
-    canvas {
-      position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none;
-    }
+    button { margin-top: 1.5rem; padding: 0.8rem 2rem;
+      font-size: 1.1rem; border: 2px solid #ff6f61; border-radius: 2rem;
+      cursor: pointer; background: #fff; color: #ff6f61;
+      transition: transform 0.2s, background 0.2s; }
+    button:hover { transform: scale(1.1); background: #ff6f61; color: #fff; }
+    .buttons { display: flex; justify-content: space-around; position: relative; margin-top: 1.5rem; }
+    #no-btn { position: relative; }
+    @keyframes pop { 0% { opacity: 0; transform: scale(0.5); } 50% { opacity: 1; transform: scale(1.2); } 100% { opacity: 0; transform: scale(1.5); } }
+    .popup { position: absolute; background: #ff6f61; color: #fff;
+      padding: 0.75rem 1.25rem; border-radius: 1rem; pointer-events: none;
+      animation: pop 1s ease-out forwards; transform: translate(-50%, -50%);
+      font-size: 1rem; font-family: Arial, sans-serif; }
+    .heart { position: fixed; bottom: 20px; right: 20px;
+      font-size: 2.5rem; background: transparent; border: none;
+      cursor: pointer; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.3); } }
+    #easter-egg { position: absolute; bottom: 80px; right: 20px;
+      background: rgba(255,255,255,0.9); color: #333;
+      padding: 1rem; border-radius: 1rem; text-align: center; }
+    .cat-image { width: 100%; border-radius: 1rem; margin-top: 1rem; }
+    .response-text { font-size: 1.2rem; margin-top: 1rem; color: #ff6f61; }
+    canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; }
   </style>
 </head>
 <body>
   <h2 id="error" class="error">404: Single Life Not Found!</h2>
-
   <div class="container hidden" id="main">
     <h1>Hey, <span class="name">Enise</span>!</h1>
     <p>Bir sürprizim var…</p>
     <button id="reveal-btn">Bak bakalım 🎁</button>
   </div>
-
   <div class="container hidden" id="teklifPage">
-    <h2>Benimle yarın akşam <strong>TK Tat Kanat</strong>'ta buluşmaya ne dersin? 💖</h2>
+    <h2>Benimle yarın akşam <strong>Dunk</strong>'ta buluşmaya ne dersin? 💖</h2>
     <div class="buttons">
       <button id="yes-btn">Evet 🤗</button>
       <button id="no-btn">Hayır 😢</button>
     </div>
   </div>
-
+  <div class="container hidden" id="successPage">
+    <img src="https://media.giphy.com/media/BMR4cgypuglVu/giphy.gif" alt="Happy kitten party" class="cat-image">
+    <h2 class="response-text">Harika! Dunk'ta buluşuyoruz! 🐾</h2>
+  </div>
+  <div class="container hidden" id="failPage">
+    <img src="https://media.giphy.com/media/ASvQ3A2Q7blzq/giphy.gif" alt="Üzgün kedi" class="cat-image">
+    <h2 class="response-text">Üzgünüm... 😿</h2>
+  </div>
   <button id="easter-btn" class="heart">♥</button>
   <div id="easter-egg" class="hidden">
     <p>🎉 Beni mi yanlışlıkla mı buldun? Seni seviyorum! 🎉</p>
   </div>
-
   <canvas id="confetti-canvas"></canvas>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
   <script>
@@ -137,36 +81,13 @@
     const mainDiv = document.getElementById('main');
     const errorEl = document.getElementById('error');
     const teklifPage = document.getElementById('teklifPage');
+    const successPage = document.getElementById('successPage');
+    const failPage = document.getElementById('failPage');
     const noBtn = document.getElementById('no-btn');
     const yesBtn = document.getElementById('yes-btn');
     const canvas = document.getElementById('confetti-canvas');
     const confetti = window.confetti;
     const myConfetti = confetti.create(canvas, { resize: true });
-
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        errorEl.classList.add('hidden');
-        mainDiv.classList.remove('hidden');
-      }, 1000);
-    });
-
-    revealBtn.addEventListener('click', () => {
-      mainDiv.classList.add('hidden');
-      teklifPage.classList.remove('hidden');
-    });
-
-    noBtn.addEventListener('mouseover', () => {
-      const container = teklifPage;
-      const rect = container.getBoundingClientRect();
-      const btnW = noBtn.offsetWidth;
-      const btnH = noBtn.offsetHeight;
-      const x = Math.random() * (rect.width - btnW);
-      const y = Math.random() * (rect.height - btnH - yesBtn.offsetHeight) + yesBtn.offsetHeight;
-      noBtn.style.position = 'absolute';
-      noBtn.style.left = `${x}px`;
-      noBtn.style.top = `${y}px`;
-    });
-
     const compliments = [
       "Gülüşün kalbimi ısıtıyor 🌼",
       "Gözlerin bir şiir gibi akıyor ✨",
@@ -179,33 +100,44 @@
       "En güzel hayalim sensin 🌠",
       "Seninle hayat çok daha anlamlı 🌷"
     ];
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        errorEl.classList.add('hidden');
+        mainDiv.classList.remove('hidden');
+      }, 1000);
+    });
+    revealBtn.addEventListener('click', () => {
+      mainDiv.classList.add('hidden');
+      teklifPage.classList.remove('hidden');
+    });
+    noBtn.addEventListener('click', () => {
+      teklifPage.classList.add('hidden');
+      failPage.classList.remove('hidden');
+    });
+    noBtn.addEventListener('mouseover', () => {
+      const rect = teklifPage.getBoundingClientRect();
+      const x = Math.random() * (rect.width - noBtn.offsetWidth);
+      const y = Math.random() * (rect.height - noBtn.offsetHeight - yesBtn.offsetHeight) + yesBtn.offsetHeight;
+      noBtn.style.position = 'absolute'; noBtn.style.left = `${x}px`; noBtn.style.top = `${y}px`;
+    });
     yesBtn.addEventListener('click', () => {
+      teklifPage.classList.add('hidden');
+      successPage.classList.remove('hidden');
+      myConfetti({ particleCount: 40, spread: 60, origin: { y: 0.3 } });
       compliments.forEach((text, i) => {
-        setTimeout(() => {
-          createPopup(text);
-          myConfetti({ particleCount: 40, spread: 60, origin: { y: 0.3 } });
-        }, i * 1000);
+        setTimeout(() => createPopup(text), i * 1000);
       });
     });
-
     function createPopup(text) {
-      const pop = document.createElement('div');
-      pop.className = 'popup';
-      pop.textContent = text;
-      const x = Math.random() * 80 + 10;
-      const y = Math.random() * 80 + 10;
-      pop.style.left = `${x}%`;
-      pop.style.top = `${y}%`;
+      const pop = document.createElement('div'); pop.className = 'popup'; pop.textContent = text;
+      const x = Math.random() * 80 + 10; const y = Math.random() * 80 + 10;
+      pop.style.left = `${x}%`; pop.style.top = `${y}%`;
       document.body.appendChild(pop);
-      const duration = Math.random() * 3000 + 4000; // 4s - 7s
-      setTimeout(() => pop.remove(), duration);
+      setTimeout(() => pop.remove(), 5000);
     }
-
     document.getElementById('easter-btn').addEventListener('click', () => {
-      const egg = document.getElementById('easter-egg');
-      egg.classList.toggle('hidden');
-      if (!egg.classList.contains('hidden'))
-        myConfetti({ particleCount: 120, spread: 90, origin: { y: 0.3 } });
+      const egg = document.getElementById('easter-egg'); egg.classList.toggle('hidden');
+      if (!egg.classList.contains('hidden')) myConfetti({ particleCount: 120, spread: 90, origin: { y: 0.3 } });
     });
   </script>
 </body>
